@@ -1,62 +1,79 @@
 body {
-    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    font-family: 'Calisto MT', 'Cambria', 'sans-serif';
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: 
+        "header header header"
+        "container container container"
+        "footer footer footer";
 }
 
-header, footer{
-    width: 100%;
-    height: 110px;
+header, footer{   
     background-color: rgb(216, 233, 238);
     color: #85ca87;
-    text-align: center;      
-    font-family: Arial, sans-serif;
+    text-align: center;   
+    padding: 5px;
+}
+.container {
+    grid-area: container;
+    width: 90%;
+    align-self: center;
+    justify-self: center;
+}
+.footer {
+    grid-area: footer;
+    padding: 5px;    
+}
+.header {
+    grid-area: header;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, auto);
+    grid-template-areas: 
+        "logo titulo titulo . ."
+        "logo titulo titulo . ."
+        "logo titulo titulo nav nav";
+}
+.logo{
+    grid-area: logo;
+    max-height: 100px;
+    margin: 5px;
+    align-self: center;
+    justify-self: center;
+    width: fit-content;
     
-    padding: 0;
 }
-header {
-    width: 100%; 
-    margin-bottom: 20px;
+.titulo{
+    grid-area: titulo;
+    max-width: 400px;
+    max-height: 40px;
+    font-size: 2rem;
+    align-self: center;
+    justify-self: center;
 }
-footer 
-    {height: 70px;padding: 5px;}
-   
+nav {
+    grid-area: nav;
+    border-radius: 10px;
+    justify-self: center; 
+    width: 80%; 
+    
+}
 
-header h1 {
-    margin: 5px auto;
-    width: 400px;
-    height: 40px;
-    font-size: 36px;
-    font-family: 'Trebuchet MS', sans-serif;  
-}
 nav ul {
-    margin: 0;
-    padding: 0 50px;
-    list-style-type: none; 
-    display: flex;   
-    justify-content: right;
-    gap: 10px;
-    
-}   
-nav ul li {
-    display: inline;      
-}   
-nav ul li a {
-    display: inline-block;
-    width: 120px;
-    height: 40px;
-    background-color: #FFFFFF;	
-    color: #8DF293;
-    text-decoration: none;
-    text-align: center;
-    line-height: 40px;
-    border-radius: 5px;
+    width: 100%;    
+    justify-content: space-around; 
 }
+
 header nav ul li a:hover {
-	background-color: #A9ABA7;
+	background-color: rgb(216, 233, 238);
 	font-family: broadway, arial;
-	border-radius: 10px 10px 0 0;
+    border-radius: 10px;
+    
 }
 
 #redes_sociales ul{
@@ -66,20 +83,25 @@ header nav ul li a:hover {
 	padding: 0;
 	list-style-type: none;
 }
+
 #redes_sociales ul li a {
 	display: block;
 	width: 30px;	
 	margin: 5px;
 }
+
 #redes_sociales ul li a img {
 	width: 100%;
 }
 
-main {
-    width: 85%;
-    margin: 0 auto 20px auto;
+#contacto p {
+    margin: 5px;
+    font-size: 0.9rem;
 }
 
+
+
+/* estilos tarjetas medicos */
 
 .medicosDisponibles {
     display: flex;
@@ -87,8 +109,7 @@ main {
     gap: 60px;
     justify-content: center;
     border: 2px dashed #70d40c;
-    padding: 10px;
-    
+    padding: 10px;    
 }
 
 h2 {
@@ -97,3 +118,64 @@ h2 {
     margin-bottom: 20px;
 }
 
+
+
+
+/*////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////// MEDIA QUERIES /////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////*/
+
+
+
+/* media para medianos */
+@media all and (min-width: 600px) and (max-width: 1023px){
+    .header {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto auto auto;
+        grid-template-areas: 
+            "logo titulo titulo"                   
+            "nav nav nav";
+    }
+    .logo{
+        max-height: 80px;        
+    }
+    .titulo{
+        font-size: 2rem;
+        justify-self:center;  
+    }
+    nav{
+        width: 100%;
+    }
+    
+}
+
+
+
+
+/* media para movil */
+
+@media all and (max-width: 599px){
+    .header {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto;
+        grid-template-areas: 
+            "logo logo"
+            "titulo titulo"            
+            "nav nav";
+    }
+    .logo{
+        max-height: 80px;        
+    }
+    .titulo{
+        font-size: 1.5rem;
+        justify-self: center;        
+    }
+    nav{        
+        width: 100%;
+    }
+    nav ul li {
+	       margin-top: 6px;
+}
+    
+    
+}
