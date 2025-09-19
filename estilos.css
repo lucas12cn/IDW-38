@@ -60,7 +60,8 @@ nav {
     grid-area: nav;
     border-radius: 10px;
     justify-self: center; 
-    width: 80%;   
+    width: 80%; 
+    
 }
 
 nav ul {
@@ -139,7 +140,7 @@ h2 {
         max-height: 80px;        
     }
     .titulo{
-        font-size: 28px;
+        font-size: 2rem;
         justify-self:center;  
     }
     nav{
@@ -172,7 +173,9 @@ h2 {
     nav{        
         width: 100%;
     }
-    
+    nav ul li {
+	       margin-top: 6px;
+}
     
     
 }
