@@ -173,5 +173,40 @@ h2 {
 	       margin-top: 6px;
 }
     
+/* estilo de institucional */ 
+
+}
+.mision {
+    
+    
+    background-color: rgb(216, 233, 238);
+    justify-self: center;
+    padding: 8px;
+    border-radius: 15px;
+    margin-top: 40px;
+    
+}
+.vision {
+    
+    
+    background-color: rgb(216, 233, 238);
+    justify-self: center;
+    padding: 8px;
+    border-radius: 15px;
+    margin-top: 8px;
+    
+}
+
+.valores {
+    
+    
+    background-color: rgb(216, 233, 238);
+    justify-self: center;
+    padding: 8px;
+    border-radius: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    
+    
     
 }
