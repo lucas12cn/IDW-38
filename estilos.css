@@ -236,3 +236,12 @@ h2 {
     
 }
 
+/* estilos de contacto */
+.contacto .card {
+  background-color: #a2dfb8; 
+  color: #ffffff;            
+  border-radius: 8px;
+}
+
+
+
