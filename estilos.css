@@ -177,64 +177,18 @@ h2 {
 
 }
 .mision {
-    
-    
     background-color: rgb(216, 233, 238);
     justify-self: center;
-    padding: 8px;
+    padding: 12px;
     border-radius: 15px;
     margin-top: 40px;
-    
+    text-align: justify;
+        
 }
 .mision h2 {
-
     font-weight: bold;
-
-}
-.vision {
-    
-    
-    background-color: rgb(216, 233, 238);
-    justify-self: center;
-    padding: 8px;
-    border-radius: 15px;
-    margin-top: 8px;
-    
-}
-.vision h2 {
-
-    font-weight: bold;
-
 }
 
-.valores {
-    
-    
-    background-color: rgb(216, 233, 238);
-    justify-self: center;
-    padding: 8px;
-    border-radius: 15px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-            
-}
-
-.valores h2 {
-
-    font-weight: bold;
-
-}
-
-.valores h3 {
-
-    font-weight: bold;
-    
-}
-.valores p {
-
-   
-    
-}
 
 /* estilos de contacto */
 .contacto .card {
