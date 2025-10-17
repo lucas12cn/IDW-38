@@ -5,13 +5,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="estilos.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="Hospital San Bernardo - Atención médica integral en Salta. Información de contacto, institucional y servicios.">
+    <title>Hospital San Bernardo</title>
 </head>
+
 <body class="grid-padre">
     <header class="header">
         <img src="imagenes/logo.jfif" alt="" class="logo">
-        <h1 class="titulo">Hospital San Bernardo</h1>
-        <nav class="navbar navbar-expand-sm bg-body-tertiary">
+        <h1 class="titulo">Hospital San Bernardo</h1>    
+
+        <nav class="navbar navbar-expand-md bg-body-tertiary">
             <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -27,65 +30,100 @@
                     <li class="nav-item">
                     <a class="nav-link" href="institucional.html">Institucional</a>
                     </li>
+                    <li class="nav-item d-none" id="adminBtn"><a class="nav-link" href="administrar.html">Administrar</a></li>
+                    <li class="nav-item" id="loginBtn" data-bs-toggle="modal" data-bs-target="#login"><a class="nav-link" href="#">Loguear</a></li>
+                    <li class="nav-item d-none" id="logoutBtn"><a class="nav-link text-danger" href="#">Salir</a></li>
                 </ul>
+            </div>    
+        <div class="modal fade" id="login" tabindex="-1" aria-labelledby="loguear" aria-hidden="true" data-bs-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered modal-sm ">
+                <div class="modal-content">
+      
+                    <div class="modal-header justify-content-center">
+                        <h5 class="modal-title fs-5 text-center w-100" id="tituloModal">Iniciar Sesión</h5>
+                        <button type="button" class="btn-close position-absolute end-0 me-3" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+      
+                    <div class="modal-body">
+                        <form id="loginForm" autocomplete="off" class="px-3">
+                        <div class="mb-3">
+                        <input type="text" id="username" class="form-control" required placeholder="Usuario">
+                        </div>
+                        <div class="mb-3">
+                        <input type="password" id="password" class="form-control" required placeholder="Contraseña">
+                        </div>
+                        <button type="submit" class="btn btn-success w-100 fw-bold">Ingresar</button>
+                        </form>
+                    </div>   
+                </div>
             </div>
-            </div>
-        </nav>        
+        </div>
+
+        </nav>          
     </header>
+        <main class="container my-4">
+  <div class="grid-institucional">
+    <div class="carousel-wrapper">
+      <div id="carouselExampleInterval" class="carousel slide rounded overflow-hidden" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <img src="/imagenes/01.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <img src="/imagenes/02.jpg" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Siguiente</span>
+        </button>
+      </div>
+    </div>
 
-    <main class="container">
-        <div class="row">
-            <div class="col">
-            <img style="width: 25rem; height: 32rem; margin-top: 32px; " class="rounded float-start" src="/imagenes/01.jpg" class="card-img-top" alt="...">
-            </div>
-            <div class="col">
-                <div class="mision">
-                    <h2>MISIÓN</h2>
-                    <p class="fs-6">Somos un Hospital Público de autogestión de alta complejidad y especializados en atención de agudos.</p>
-                    <p class="fs-6">Trabajamos brindando cuidados asistenciales de excelencia al alcance de toda la población, situando al paciente y a su familia en el eje de nuestra atención.</p>
-                    <p class="fs-6">Somos el Centro Formador de especialistas más importante de Salta. Promovemos la docencia e investigación para la mejora continua y formación de nuestro personal.</p>
-                </div>
-                <div class="mision">
-                    <h2>VISIÓN</h2>
-                    <p class="fs-6">Queremos ser una organización hospitalaria modelo y referente a nivel regional desde la perspectiva asistencial, de recursos humanos, docencia e investigación.</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-        <div class="col">
-            <img style="width: 25rem; height: 32rem; margin-top: 32px; " class="rounded float-start" src="/imagenes/02.jpg" class="card-img-top" alt="...">
-        </div>
-        
-            <div class="col">
-                <div class="mision">
-                    <h2>VALORES</h2>                
-                    <div>
-                        <h3><span>Compromiso</span></h3>
-                        <div><p class="fs-6">Asumimos nuestras tareas comprometidos con la institución, enfocando nuestro esfuerzo en brindar atención de calidad a nuestros pacientes y su familia.</p></div>
-                    </div>
-                    <div>
-                        <h3><span>Equidad</span></h3>
-                        <div><p class="fs-6">Trabajamos con la mirada puesta en la igualdad en la atención a todos los ciudadanos, orientados a la asistencia de personas con acceso limitado a los servicios de salud. Inclusión e igualdad de oportunidades para todo el personal.</p></div>
-                    </div>
-                    <div>
-                        <h3><span>Vocación de Servicio</span></h3>
-                        <div><p class="fs-6">Brindamos trato amable y cortés en la atención a los pacientes y sus familias. Respetamos su identidad individual y dignidad humana.</p></div>
-                    </div>
-                    <div>
-                        <h3><span>Profesionalidad </span></h3>
-                        <div><p class="fs-6">Brindamos nivel de asistencia al paciente de máxima calidad. Contamos con profesionales expertos y calificados. Sostenemos el trabajo con eficacia y eficiencia en cada proceso hospitalario. Asumimos el criterio de mejora continua de la calidad en todos nuestros servicios</p></div>
-                    </div>
-                    <div>
-                        <h3><span>Trabajo en equipo</span></h3>
-                        <div><p class="fs-6">Coordinamos e integramos esfuerzos entre servicios, profesionales y centros sanitarios de la región. Respetamos y valoramos nuestras diferencias, fortaleciendo las relaciones interpersonales y priorizando el éxito de la institución y el equipo por encima del éxito individual.</p></div>
-                    </div>
-                
-                </div>
-            </div>
-        </div>
+    <div class="mision" id="mision">
+      <h2>MISIÓN</h2>
+      <p class="fs-6">Somos un Hospital Público de autogestión de alta complejidad y especializados en atención de agudos.</p>
+      <p class="fs-6">Trabajamos brindando cuidados asistenciales de excelencia al alcance de toda la población, situando al paciente y a su familia en el eje de nuestra atención.</p>
+      <p class="fs-6">Somos el Centro Formador de especialistas más importante de Salta. Promovemos la docencia e investigación para la mejora continua y formación de nuestro personal.</p>
+    </div>
 
+    <div class="mision" id="vision">
+      <h2>VISIÓN</h2>
+      <p class="fs-6">Queremos ser una organización hospitalaria modelo y referente a nivel regional desde la perspectiva asistencial, de recursos humanos, docencia e investigación.</p>
+    </div>
+
+    <div class="mision" id="valores">
+      <h2>VALORES</h2>
+      <div>
+        <h3>Compromiso</h3>
+        <p class="fs-6">Asumimos nuestras tareas comprometidos con la institución, enfocando nuestro esfuerzo en brindar atención de calidad a nuestros pacientes y su familia.</p>
+      </div>
+      <div>
+        <h3>Equidad</h3>
+        <p class="fs-6">Trabajamos con la mirada puesta en la igualdad en la atención a todos los ciudadanos, orientados a la asistencia de personas con acceso limitado a los servicios de salud. Inclusión e igualdad de oportunidades para todo el personal.</p>
+      </div>
+      <div>
+        <h3>Vocación de Servicio</h3>
+        <p class="fs-6">Brindamos trato amable y cortés en la atención a los pacientes y sus familias. Respetamos su identidad individual y dignidad humana.</p>
+      </div>
+      <div>
+        <h3>Profesionalidad</h3>
+        <p class="fs-6">Brindamos nivel de asistencia al paciente de máxima calidad. Contamos con profesionales expertos y calificados. Sostenemos el trabajo con eficacia y eficiencia en cada proceso hospitalario. Asumimos el criterio de mejora continua de la calidad en todos nuestros servicios.</p>
+      </div>
+      <div>
+        <h3>Trabajo en equipo</h3>
+        <p class="fs-6">Coordinamos e integramos esfuerzos entre servicios, profesionales y centros sanitarios de la región. Respetamos y valoramos nuestras diferencias, fortaleciendo las relaciones interpersonales y priorizando el éxito de la institución y el equipo por encima del éxito individual.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+ 
        
-    </main>    
     <footer class="footer">
         <div id="redes_sociales">
 				<ul>
@@ -100,6 +138,7 @@
     </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script type="text/javascript" src="login.js"></script>
 
 </body>
 </html>
