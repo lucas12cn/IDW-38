@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const loginBtn = document.getElementById('loginBtn');
   const modalElement = document.getElementById('login');
 
+  
   const canal = new BroadcastChannel('canalLogin');
 
   // función que cambia la nav según estado de login
@@ -91,10 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
       window.location.href = 'index.html';
       }
       }
-      verificarAccesoAdmin();
-
-
-
+  verificarAccesoAdmin();
   // al cargar la página, actualizar la UI según el estado
   updateUIForAdmin(sessionStorage.getItem('isAdmin') === 'true');
 });
