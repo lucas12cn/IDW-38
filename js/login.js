@@ -87,6 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function verificarAccesoAdmin() {
         const esAdmin = sessionStorage.getItem('isAdmin') === 'true';
         const estaEnAdmin = window.location.pathname.includes('administrar.html');
+        
     
       if (estaEnAdmin && !esAdmin) {
       window.location.href = 'index.html';
