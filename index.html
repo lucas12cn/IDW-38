@@ -31,9 +31,6 @@
                     <li class="nav-item">
                     <a class="nav-link" href="institucional.html">Institucional</a>
                     </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="altaMedicos.html">Alta Medicos</a>
-                    </li>
                     <li class="nav-item d-none" id="adminBtn"><a class="nav-link" href="administrar.html">Administrar</a></li>
                     <li class="nav-item" id="loginBtn" data-bs-toggle="modal" data-bs-target="#login"><a class="nav-link" href="#">Loguear</a></li>
                     <li class="nav-item d-none" id="logoutBtn"><a class="nav-link text-danger" href="#">Salir</a></li>
@@ -70,53 +67,13 @@
         
         <section class="mt-5">
             <h2>Médicos disponibles</h2>
-            <div class="row g-4">
+            
+            <div id="contenedor-medicos" class="row g-4">
 
-                <div class="col-12 col-md-6 col-lg-3">
-                    <div class="card h-100">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzMnqgs3U7KpmaQUo-qSbPEYV_rmz-_dtCoQ&s" class="card-img-top" alt="Dr. Juan Perez">
-                        <div class="card-body">
-                            <h3 class="card-title">Dr. Juan Perez</h3>
-                            <p class="card-text">Especialidad: Cardiólogo</p>
-                            <p class="card-text">Obra social: OSDE</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-3">
-                    <div class="card h-100">
-                        <img src="data:image/jpeg;base64,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" class="card-img-top" alt="Dra. Maria Gomez">
-                        <div class="card-body">
-                            <h3 class="card-title">Dra. Maria Gomez</h3>
-                            <p class="card-text">Especialidad: Pediatra</p>
-                            <p class="card-text">Obra social: Swiss Medical</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-3">
-                    <div class="card h-100">
-                        <img src="https://mktmedico.mx/assets/img/about/Rectangle-105.jpg" class="card-img-top" alt="Dr. Carlos Lopez">
-                        <div class="card-body">
-                            <h3 class="card-title">Dr. Carlos Lopez</h3>
-                            <p class="card-text">Especialidad: Traumatólogo</p>
-                            <p class="card-text">Obra social: Galeno</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-3">
-                    <div class="card h-100">
-                        <img src="https://www.scripps.org/sparkle-assets/variants/hi_res_new_doctor_fb-32abb9ba141c8223aadebce90782ac68_desktop_x++-1200x1200.jpeg" class="card-img-top" alt="Dra. Luisina De Pual">
-                        <div class="card-body">
-                            <h3 class="card-title">Dra. Luisina De Pual</h3>
-                            <p class="card-text">Especialidad: Radióloga</p>
-                            <p class="card-text">Obra social: IPS</p>
-                        </div>
-                    </div>
-                </div>
+                <!-- las tarjetas se generan dentro de este div -->
 
             </div>
+
         </section>
     </main> 
     
@@ -137,6 +94,7 @@
 
 <script src="config/usuarios.js"></script>
 <script type="text/javascript" src="js/login.js"></script>
+<script type="text/javascript" src="js/catalogo.js"></script>
 
 </body>
 

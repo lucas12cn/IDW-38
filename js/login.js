@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
       console.log(esAdmin ? 'Admin logueado' : `Usuario ${user} logueado`);
       canal.postMessage({ tipo: 'login', usuario: user });
       
-      // Cerrar el modal de Bootstrap
+      // Cierra el modal despues de loguear
       const modal = bootstrap.Modal.getInstance(modalElement);
       if (modal) {modal.hide();}
     } else {alert('Usuario o contraseña incorrectos');}
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
       sessionStorage.removeItem('isAdmin');
       updateUIForAdmin(false);
       
-      // Notificar a otras pestañas
+      // Notifica a otras pestañas
       canal.postMessage({ tipo: 'logout' });
 
       window.location.href = 'index.html'; // redirige a la página principal después de cerrar sesión
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Impide que se ingrese a administrar.html por ruta si no es admin
   function verificarAccesoAdmin() {
         const esAdmin = sessionStorage.getItem('isAdmin') === 'true';
-        const estaEnAdmin = window.location.pathname.includes('administrar.html');
+        const estaEnAdmin = window.location.pathname.includes('administrar.html') || window.location.pathname.includes('altaMedicos.html');
         
     
       if (estaEnAdmin && !esAdmin) {
