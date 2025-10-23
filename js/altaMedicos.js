@@ -5,6 +5,7 @@ const inputObraS = document.getElementById('obraSocial')
 const inputTelefono = document.getElementById('Telefono')
 const inputEmail = document.getElementById('Email')
 const tablaMedicosBody = document.querySelector('#tablaMedicos tbody')
+const inputImagen = document.getElementById('imagen')
 
 let flagIndex = null;
 function actualizarTabla(){
@@ -19,6 +20,7 @@ function actualizarTabla(){
             <td>${medico.telefono}</td>
             <td>${medico.obraSocial}</td>
             <td>${medico.email}</td>
+            <td><img src="${medico.imagen || 'https://via.placeholder.com/60'}" width="60" height="60" style="border-radius:50%"></td>
             <td>
             <button class="btn btn-sm btn-warning me-2 btn-editar" data-index="${index}">Editar </button>
             <button class="btn btn-sm btn-warning me-2 btn-eliminar" data-index="${index}">Eliminar </button>
@@ -46,14 +48,19 @@ function altaMedicos(event){
     let telefono = inputTelefono.value.trim();
     let obraSocial = inputObraS.value.trim();
     let email = inputEmail.value.trim();
+    let imagenArchivo = inputImagen.files[0];
     
 
     if(!nombre || !especialidad || !telefono || !obraSocial || !email){
         alert('Por favor completa lo cuadros requeridos')
         return;
+        const reader = new FileReader();
+
+    reader.onload = function(e) {
+        const imagenBase64 = e.target.result || null;
     }
     let medicos = JSON.parse(localStorage.getItem('medicos')) || [];
-    const medico = { nombre, especialidad, telefono, obraSocial, email };
+    const medico = { nombre, especialidad, telefono, obraSocial, email, imagen: imagenBase64 };
 
     if(flagIndex !== null){
         medicos[flagIndex] = medico;
@@ -69,9 +76,16 @@ function altaMedicos(event){
         `Email: ${email}\n`
     );
     }
+
     localStorage.setItem('medicos', JSON.stringify(medicos))
     actualizarTabla();
     formaltaMedico.reset();
+    }
+if (imagenArchivo) {
+        reader.readAsDataURL(imagenArchivo); 
+    } else {
+        reader.onload({ target: { result: 'https://via.placeholder.com/60' } }); 
+    }
     //actualizar tabla
 
 }
@@ -82,6 +96,7 @@ function editarMedicos(index){
     inputEspecialidad.value = medico.especialidad;
     inputObraS = medico.obraSocial;
     flagIndex = index;
+
 
 }
 function eliminarMedicos(index){
