@@ -3,7 +3,7 @@ function obtenerMedicos() {
   const medicosGuardados = localStorage.getItem('medicos');
   const medicosNuevos = medicosGuardados ? JSON.parse(medicosGuardados) : [];
   
-  // une los medicos arcodeados con los medicos del local. Para que los del local no piden los inciales
+  // une los medicos harcodeados con los medicos del local. Para que los del local no pisen los inciales
   return [...medicosIniciales, ...medicosNuevos];
 }
 
@@ -18,20 +18,20 @@ function mostrarMedicos() {
 
     const card = document.createElement('div');
     
-    card.className = 'col-md-4 mb-4';
+    card.className = 'col-12 col-sm-6 col-md-6 col-lg-4 mb-4';
 
     card.innerHTML = `
       
-        <div class="card h-100 shadow-sm">
-        <img src="${medico.imagen}" class="card-img-top" alt="${medico.nombre}">
-        <div class="card-body">
-          <h5 class="card-title">${medico.nombre}</h5>
-          <p class="card-text">
-            <strong>Especialidad:</strong> ${medico.especialidad}<br>
-            <strong>Obra social:</strong> ${medico.obraSocial}<br>
-          </p>
+        <div class="card shadow-sm">
+          <img src="${medico.imagen}" class="card-img-top object-fit-scale" alt="${medico.nombre}" style="max-height: 410px;">
+          <div class="card-body">
+            <h5 class="card-title text-center">${medico.nombre}</h5>
+            <p class="card-text card-text lh-lg mt-3">
+              <strong>Especialidad:</strong> ${medico.especialidad}<br>
+              <strong>Obra social:</strong> ${medico.obraSocial}<br>
+            </p>
+          </div>
         </div>
-      </div>
     `;
     contenedor.appendChild(card);
   }

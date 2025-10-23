@@ -130,13 +130,12 @@ h2 {
 /* estilos de modal loguin */
 
 .modal-header, .modal-title {
-    background-color:  rgb(209, 229, 235);
-    color: white; 
-    font-weight: bold;    
+    background-color:  rgb(216, 233, 238);;
+    
+       
 }
 .modal-body button{
-    background-color:  #7dbe7f;
-    
+    background-color:  #7dbe7f;    
     border: none;
     font-weight: bold;
     font-size: 1.2rem;
@@ -155,6 +154,15 @@ h2 {
 }
 .btn-close::before {content:'×';}
 
+/*boten administrar*/
+
+.pie-tarjeta {
+    background-color: rgb(216, 233, 238);
+         
+    font-size: 1.8rem;       
+    font-weight: bold;
+
+}
 
 
 /*

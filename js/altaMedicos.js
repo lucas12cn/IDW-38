@@ -16,15 +16,16 @@ function actualizarTabla(){
     medicos.forEach((medico, index) => {
         let fila = document.createElement('tr');
         fila.innerHTML = `
-            <td>${medico.nombre}</td>
-            <td>${medico.especialidad}</td>
-            <td>${medico.telefono}</td>
-            <td>${medico.obraSocial}</td>
-            <td>${medico.email}</td>
-            <td><img src="${medico.imagen || 'https://via.placeholder.com/60'}" width="60" height="60" style="border-radius:50%"></td>
-            <td>
-            <button class="btn btn-sm btn-warning me-2 btn-editar" data-index="${index}">Editar </button>
-            <button class="btn btn-sm btn-warning me-2 btn-eliminar" data-index="${index}">Eliminar </button>
+            <td style="vertical-align: middle;">${medico.nombre}</td>
+            <td style="vertical-align: middle;">${medico.especialidad}</td>
+            <td style="vertical-align: middle;">${medico.telefono}</td>
+            <td style="vertical-align: middle;">${medico.obraSocial}</td>
+            <td style="vertical-align: middle;">${medico.email}</td>
+            <td style="vertical-align: middle;"><img src="${medico.imagen || 'https://via.placeholder.com/60'}" width="60" height="60" style="border-radius:50%"></td>
+            <td style="vertical-align: middle;">
+                <button class="btn btn-sm btn-warning me-2 btn-editar" data-index="${index}">Editar</button>
+                <button class="btn btn-sm btn-danger me-2 btn-eliminar" data-index="${index}">Eliminar</button>
+            </td>
         `;
         tablaMedicosBody.appendChild(fila);
     })
