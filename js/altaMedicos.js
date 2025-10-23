@@ -12,6 +12,7 @@ function actualizarTabla(){
     let medicos = JSON.parse(localStorage.getItem('medicos')) || [];
     tablaMedicosBody.innerHTML = '';
 
+    
     medicos.forEach((medico, index) => {
         let fila = document.createElement('tr');
         fila.innerHTML = `
@@ -40,7 +41,7 @@ tablaMedicosBody.addEventListener('click', function(event){
 })
 
 
-function altaMedicos(event){
+function altaMedicos(event) {
     event.preventDefault();
 
     let nombre = inputNombre.value.trim();
@@ -49,54 +50,67 @@ function altaMedicos(event){
     let obraSocial = inputObraS.value.trim();
     let email = inputEmail.value.trim();
     let imagenArchivo = inputImagen.files[0];
-    
 
-    if(!nombre || !especialidad || !telefono || !obraSocial || !email){
+    if (!nombre || !especialidad || !telefono || !obraSocial || !email) {
         alert('Por favor completa lo cuadros requeridos')
         return;
+    }
+    const guardarMedico = (imagenBase64) => {
+        let medicos = JSON.parse(localStorage.getItem('medicos')) || [];
+        const medico = { nombre, especialidad, telefono, obraSocial, email, imagen: imagenBase64 };
+
+        if (flagIndex !== null) {
+            medicos[flagIndex] = medico;
+            flagIndex = null;
+        } else {
+            medicos.push(medico);
+            alert(
+                `Medico Registrado:\n\n` +
+                `Nombre: ${nombre}\n` +
+                `Especialidad: ${especialidad}\n` +
+                `Telefono: ${telefono}\n` +
+                `Obra Social: ${obraSocial}\n` +
+                `Email: ${email}\n`
+            );
+        }
+    localStorage.setItem('medicos', JSON.stringify(medicos));
+        actualizarTabla();
+        formaltaMedico.reset();
+    };
+    if (imagenArchivo) {
         const reader = new FileReader();
-
-    reader.onload = function(e) {
-        const imagenBase64 = e.target.result || null;
-    }
-    let medicos = JSON.parse(localStorage.getItem('medicos')) || [];
-    const medico = { nombre, especialidad, telefono, obraSocial, email, imagen: imagenBase64 };
-
-    if(flagIndex !== null){
-        medicos[flagIndex] = medico;
-        flagIndex = null;
-    } else{
-        medicos.push(medico);
-    alert(
-        `Medico Registrado:\n\n` +
-        `Nombre: ${nombre}\n`   +
-        `Especialidad: ${especialidad}\n`   +
-        `Telefono: ${telefono}\n`   +
-        `Obra Social: ${obraSocial}\n`   +
-        `Email: ${email}\n`
-    );
-    }
-
-    localStorage.setItem('medicos', JSON.stringify(medicos))
-    actualizarTabla();
-    formaltaMedico.reset();
-    }
-if (imagenArchivo) {
-        reader.readAsDataURL(imagenArchivo); 
+        reader.onload = function(e) {
+            const imagenBase64 = e.target.result;
+            guardarMedico(imagenBase64);
+        };
+        reader.readAsDataURL(imagenArchivo);
     } else {
-        reader.onload({ target: { result: 'https://via.placeholder.com/60' } }); 
-    }
+        let imagenParaGuardar;
+        if (flagIndex !== null) {
+            let medicos = JSON.parse(localStorage.getItem('medicos')) || [];
+            imagenParaGuardar = medicos[flagIndex].imagen;
+        } else {    
+            imagenParaGuardar = 'https://via.placeholder.com/60';
+        }
+        
+        guardarMedico(imagenParaGuardar);
+    }    
+}
     //actualizar tabla
 
-}
+
 function editarMedicos(index){
     let medicos = JSON.parse(localStorage.getItem('medicos')) || [];
     let medico = medicos[index];
+    
     inputNombre.value = medico.nombre;
     inputEspecialidad.value = medico.especialidad;
-    inputObraS = medico.obraSocial;
+    inputObraS.value = medico.obraSocial;
+    inputTelefono.value = medico.telefono;
+    inputEmail.value = medico.email;
+    
     flagIndex = index;
-
+    inputImagen.value = null;
 
 }
 function eliminarMedicos(index){
