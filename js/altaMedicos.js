@@ -86,8 +86,28 @@ if (imagenArchivo) {
     } else {
         reader.onload({ target: { result: 'https://via.placeholder.com/60' } }); 
     }
+    //actualizar tabla
+
 }
+function editarMedicos(index){
+    let medicos = JSON.parse(localStorage.getItem('medicos')) || [];
+    let medico = medicos[index];
+    inputNombre.value = medico.nombre;
+    inputEspecialidad.value = medico.especialidad;
+    inputObraS = medico.obraSocial;
+    flagIndex = index;
 
 
+}
+function eliminarMedicos(index){
+    let medicos = JSON.parse(localStorage.getItem('medicos')) || [];
+    if(confirm(`¿Estás seguro que deseas eliminar al médico ${medicos[index].nombre}?`)){
+        medicos.splice(index, 1);
+        localStorage.setItem('medicos', JSON.stringify(medicos));
+        actualizarTabla();
+        formaltaMedico.reset();
+        flagIndex = null;
+    }       
+}
 formaltaMedico.addEventListener('submit', altaMedicos)
 document.addEventListener('DOMContentLoaded', actualizarTabla)
