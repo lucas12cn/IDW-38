@@ -252,8 +252,10 @@ h2 {
       "valores valores";
     grid-template-columns: 1fr 1fr;
   }
+  .container {
+    width: 100%;
 }
-
+}
   
 
 
@@ -280,7 +282,7 @@ h2 {
     }
     nav ul li {
 	       margin-top: 6px;
-}
+    }
     .grid-institucional {
     grid-template-areas:
       "carousel"
@@ -288,8 +290,14 @@ h2 {
       "vision"
       "valores";
     grid-template-columns: 1fr;
-  }
+    }
+    .container {
+    width: 100%;
+    }
 }
+
+
+
 
 /* estilos de institucional */
 .mision {
@@ -298,20 +306,18 @@ h2 {
     padding: 12px;
     border-radius: 15px;
     
-    text-align: justify;
-        
+    text-align: justify;      
 }
 .mision h2 {
     font-weight: bold;
 }
-
-
 /* estilos de contacto */
 .contacto .card {
   background-color: #a2dfb8; 
   color: #ffffff;            
   border-radius: 8px;
 }
+
 
 
 
