@@ -6,10 +6,12 @@
     <link rel="stylesheet" type="text/css" href="estilos.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Hospital San Bernardo - Atención médica integral en Salta. Información de contacto, institucional y servicios.">
-    <title>Hospital San Bernardo</title>    
+    <title>Hospital San Bernardo - Panel de Administración</title>
+    <style>
+        
+    </style>
 </head>
-
-<body class="grid-padre">
+<body>
     
     <header class="header">
         <img src="imagenes/logo.jfif" alt="" class="logo">
@@ -30,7 +32,7 @@
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="institucional.html">Institucional</a>
-                    </li>
+                    </li>                    
                     <li class="nav-item d-none" id="adminBtn"><a class="nav-link" href="administrar.html">Administrar</a></li>
                     <li class="nav-item" id="loginBtn" data-bs-toggle="modal" data-bs-target="#login"><a class="nav-link" href="#">Loguear</a></li>
                     <li class="nav-item d-none" id="logoutBtn"><a class="nav-link text-danger" href="#">Salir</a></li>
@@ -60,54 +62,149 @@
             </div>
         </div>
 
-        </nav>  
-                
+        </nav>          
     </header>
 
-    <main class="container">
+    <main class="container mt-4" style="min-height: 70vh;">
+        <h2 class="mb-4">Panel de Administración</h2>
+        
+        <ul class="nav nav-tabs nav-justified" id="adminTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="medicos-tab" data-bs-toggle="tab" data-bs-target="#medicos" type="button" role="tab" aria-controls="medicos" aria-selected="true">
+                    Médicos
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="especialidades-tab" data-bs-toggle="tab" data-bs-target="#especialidades" type="button" role="tab" aria-controls="especialidades" aria-selected="false">
+                    Especialidades
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="obras-tab" data-bs-toggle="tab" data-bs-target="#obras" type="button" role="tab" aria-controls="obras" aria-selected="false">
+                    Obras Sociales
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="turnos-tab" data-bs-toggle="tab" data-bs-target="#turnos" type="button" role="tab" aria-controls="turnos" aria-selected="false">
+                    Turnos
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="usuarios-tab" data-bs-toggle="tab" data-bs-target="#usuarios" type="button" role="tab" aria-controls="usuarios" aria-selected="false">
+                    Usuarios
+                </button>
+            </li>
+        </ul>
 
-                 
-            <div class="row g-3">
-                <div class="col-12 col-md-6 col-lg-3">
-                    <div class="card h-100 shadow-sm" onclick="window.location.href='altaMedicos.html';" style="cursor: pointer;">
-                    <img src="imagenes/registrar.jpg" class="card-img-top">
-                    <div class="card-body pie-tarjeta">
-                    <h5 class="card-title text-center">Registrar Médico</h5>
-                    </div>
-                    </div>
+        <!--solapitas-->
+        <div class="tab-content" id="adminTabsContent">
+            
+            <!--Alta de Médicos-->
+            <div class="tab-pane fade show active" id="medicos" role="tabpanel" aria-labelledby="medicos-tab">
+                <section class="mb-5">
+                    <section class="mb-5">
+            <h2 class="mb-3">Alta de Médicos</h2>
+            <form id="altaMedicoForm" class="border rounded p-4 bg-light shadow-sm">
+                <div class="mb-3">
+                    <label for="Nombre" class="form-label">Nombre y Apellido</label>
+                    <input name="Nombre" type="text" class="form-control" id="Nombre" required>
+                <div class="mb-3">
+                    <label for="Especialidad" class="form-label">Especialidad</label>
+                    <input name="Especialidad" type="text" class="form-control" id="Especialidad" required>
+                </div>
+                <div class="mb-3">
+                    <label for="Telefono" class="form-label">Teléfono</label>
+                    <input name="Telefono" type="tel" class="form-control" id="Telefono" required>
+                </div>
+                 <div class="mb-3">
+                    <label for="obraSocial" class="form-label">Obras Sociales (separadas por coma)</label>
+                    <input name="obraSocial" type="text" class="form-control" id="obraSocial" placeholder="OSDE, IOMA, Swiss Medical" required>
+                </div>
+                <div class="mb-3">
+                    <label for="Email" class="form-label">Email</label>
+                    <input name="Email"  type="email" class="form-control" id="Email" required>
+                    <div class="mb-3">
+                    <label for="imagen" class="form-label">Foto del médico:</label>
+                    <input type="file" class="form-control" id="imagen" accept="image/*">
+                </div>
+                <button type="submit" class="btn btn-primary">Registrar Médico</button>
+            </form>
+            </section>
+            <section>
+            <div class="container text-center">
+                <div class="table-responsive">
+                    <table class="table" id="tablaMedicos">
+                        <thead class="table">
+                            <tr>
+                            <th scope="col">Nombre y Apellido</th>
+                            <th scope="col">Especialidad</th>
+                            <th scope="col">Telefono</th>
+                            <th scope="col">Obra Social</th>
+                            <th scope="col">Correo electronico</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--medigos-->
+                        </tbody>
+                        </table>
+
                 </div>
             </div>
+        </section>
+                </section>
+            </div>
 
-                
+            <!--Especialidades-->
+            <div class="tab-pane fade" id="especialidades" role="tabpanel" aria-labelledby="especialidades-tab">
+                <section class="mb-5">
+                    
+                </section>
+            </div>
 
-        
+            <!--Obras Sociales-->
+            <div class="tab-pane fade" id="obras" role="tabpanel" aria-labelledby="obras-tab">
+                <section class="mb-5">
+                    
+                </section>
+            </div>
 
+            <!--Gestionar Turnos-->
+            <div class="tab-pane fade" id="turnos" role="tabpanel" aria-labelledby="turnos-tab">
+                <section class="mb-5">
+                    
+                </section>
+            </div>
 
+            <!--Usuarios-->
+            <div class="tab-pane fade" id="usuarios" role="tabpanel" aria-labelledby="usuarios-tab">
+                <section>
+                    
+                </section>
+            </div>
 
-
-
-
-        
+        </div>
     </main>
-    
+
     <footer class="footer">
         <div id="redes_sociales">
-				<ul>
-				<li><a href="#"><img src="ico/1.png"></a></li>
-				<li><a href="#"><img src="ico/2.png"></a></li>
+            <ul>
+                <li><a href="#"><img src="ico/1.png"></a></li>
+                <li><a href="#"><img src="ico/2.png"></a></li>
                 <li><a href="#"><img src="ico/3.png"></a></li>
-			    </ul>
+            </ul>
         </div>
         <div id="contacto">
             <p>© Hospital San Bernardo</p>
         </div>
     </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-
-<script src="config/usuarios.js"></script>
-<script type="text/javascript" src="js/login.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    
+    <script src="config/usuarios.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
+    <script src="js/altaMedicos.js"></script>
+    
 </body>
-
 </html>
