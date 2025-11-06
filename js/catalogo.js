@@ -21,7 +21,6 @@ function mostrarMedicos() {
     card.className = 'col-12 col-sm-6 col-md-6 col-lg-4 mb-4';
 
     card.innerHTML = `
-      
         <div class="card shadow-sm">
           <img src="${medico.imagen}" class="card-img-top object-fit-scale" alt="${medico.nombre}" style="max-height: 410px;">
           <div class="card-body">
