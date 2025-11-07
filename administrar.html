@@ -32,7 +32,10 @@
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="institucional.html">Institucional</a>
-                    </li>                    
+                    </li>
+                     <li class="nav-item">
+                    <a class="nav-link" href="reservas.html">Turnos</a>
+                    </li>                   
                     <li class="nav-item d-none" id="adminBtn"><a class="nav-link" href="administrar.html">Administrar</a></li>
                     <li class="nav-item" id="loginBtn" data-bs-toggle="modal" data-bs-target="#login"><a class="nav-link" href="#">Loguear</a></li>
                     <li class="nav-item d-none" id="logoutBtn"><a class="nav-link text-danger" href="#">Salir</a></li>
@@ -81,7 +84,8 @@
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="obras-tab" data-bs-toggle="tab" data-bs-target="#obras" type="button" role="tab" aria-controls="obras" aria-selected="false">
-                    Obras Sociales
+                    <span class="d-sm-none d-lg-inline">Obras Sociales</span>
+                    <span class="d-none d-sm-inline d-lg-none">OS</span>
                 </button>
             </li>
             <li class="nav-item" role="presentation">
@@ -100,59 +104,60 @@
         <div class="tab-content" id="adminTabsContent">
             
             <!--Alta de Médicos-->
-            <div class="tab-pane fade show active" id="medicos" role="tabpanel" aria-labelledby="medicos-tab">
+            <div class="tab-pane fade show active caja_administrar" id="medicos" role="tabpanel" aria-labelledby="medicos-tab">
                 <section class="mb-5">
                     <section class="mb-5">
-            <h2 class="mb-3">Alta de Médicos</h2>
-            <form id="altaMedicoForm" class="border rounded p-4 bg-light shadow-sm">
-                <div class="mb-3">
-                    <label for="Nombre" class="form-label">Nombre y Apellido</label>
-                    <input name="Nombre" type="text" class="form-control" id="Nombre" required>
-                <div class="mb-3">
-                    <label for="Especialidad" class="form-label">Especialidad</label>
-                    <input name="Especialidad" type="text" class="form-control" id="Especialidad" required>
-                </div>
-                <div class="mb-3">
-                    <label for="Telefono" class="form-label">Teléfono</label>
-                    <input name="Telefono" type="tel" class="form-control" id="Telefono" required>
-                </div>
-                 <div class="mb-3">
-                    <label for="obraSocial" class="form-label">Obras Sociales (separadas por coma)</label>
-                    <input name="obraSocial" type="text" class="form-control" id="obraSocial" placeholder="OSDE, IOMA, Swiss Medical" required>
-                </div>
-                <div class="mb-3">
-                    <label for="Email" class="form-label">Email</label>
-                    <input name="Email"  type="email" class="form-control" id="Email" required>
+                    <h2 class="mb-3">Alta de Médicos</h2>
+                    <form id="altaMedicoForm" class="border rounded p-4 bg-light shadow-sm">
                     <div class="mb-3">
-                    <label for="imagen" class="form-label">Foto del médico:</label>
-                    <input type="file" class="form-control" id="imagen" accept="image/*">
-                </div>
-                <button type="submit" class="btn btn-primary">Registrar Médico</button>
-            </form>
-            </section>
-            <section>
-            <div class="container text-center">
-                <div class="table-responsive">
-                    <table class="table" id="tablaMedicos">
-                        <thead class="table">
-                            <tr>
-                            <th scope="col">Nombre y Apellido</th>
-                            <th scope="col">Especialidad</th>
-                            <th scope="col">Telefono</th>
-                            <th scope="col">Obra Social</th>
-                            <th scope="col">Correo electronico</th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!--medigos-->
-                        </tbody>
-                        </table>
+                        <label for="Nombre" class="form-label">Nombre y Apellido</label>
+                        <input name="Nombre" type="text" class="form-control" id="Nombre" required>
+                    <div class="mb-3">
+                        <label for="Especialidad" class="form-label">Especialidad</label>
+                        <input name="Especialidad" type="text" class="form-control" id="Especialidad" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Telefono" class="form-label">Teléfono</label>
+                        <input name="Telefono" type="tel" class="form-control" id="Telefono" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="obraSocial" class="form-label">Obras Sociales (separadas por coma)</label>
+                        <input name="obraSocial" type="text" class="form-control" id="obraSocial" placeholder="OSDE, IOMA, Swiss Medical" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Email" class="form-label">Email</label>
+                        <input name="Email"  type="email" class="form-control" id="Email" required>
+                        <div class="mb-3">
+                        <label for="imagen" class="form-label">Foto del médico:</label>
+                        <input type="file" class="form-control" id="imagen" accept="image/*">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Registrar Médico</button>
+                    </form>
+                    </section>
+                    
+                    <section>
+                    <div class="container text-center">
+                        <div class="table-responsive">
+                            <table class="table" id="tablaMedicos">
+                                <thead class="table">
+                                    <tr>
+                                    <th scope="col">Nombre y Apellido</th>
+                                    <th scope="col">Especialidad</th>
+                                    <th scope="col">Telefono</th>
+                                    <th scope="col">Obra Social</th>
+                                    <th scope="col">Correo electronico</th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!--medigos-->
+                                </tbody>
+                                </table>
 
-                </div>
-            </div>
-        </section>
+                        </div>
+                    </div>
+                    </section>
                 </section>
             </div>
 
@@ -178,9 +183,27 @@
             </div>
 
             <!--Usuarios-->
-            <div class="tab-pane fade" id="usuarios" role="tabpanel" aria-labelledby="usuarios-tab">
+            <div class="tab-pane fade caja_administrar" id="usuarios" role="tabpanel" aria-labelledby="usuarios-tab">
                 <section>
-                    
+                    <h2 class="mb-3">Usuarios</h2>
+                    <div class="container text-center">
+                    <div class="table-responsive">
+                    <table class="table" id="tablaUsuarios">
+                        <thead class="table">
+                            <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Usuario</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Telefono</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--Usuarios-->
+                        </tbody>
+                        </table>
+
+                    </div>
+                </div>
                 </section>
             </div>
 
@@ -205,6 +228,7 @@
     <script src="config/usuarios.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
     <script src="js/altaMedicos.js"></script>
+    <script src="js/usuarios.js"></script>
     
 </body>
 </html>
