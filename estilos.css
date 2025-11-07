@@ -130,7 +130,7 @@ h2 {
 /* estilos de modal loguin */
 
 .modal-header, .modal-title {
-    background-color:  rgb(216, 233, 238);;
+    background-color:  rgb(216, 233, 238);
     
        
 }
@@ -154,15 +154,24 @@ h2 {
 }
 .btn-close::before {content:'×';}
 
-/*boten administrar*/
+/*administrar*/
 
-.pie-tarjeta {
-    background-color: rgb(216, 233, 238);
-         
-    font-size: 1.8rem;       
-    font-weight: bold;
-
+.nav-tabs .nav-link:not(.active) {
+        color: #6c757d;
 }
+.nav-tabs .nav-link.active {
+    background-color:  rgb(216, 233, 238);
+    
+    border-color: transparent; 
+}
+#medicos {
+    padding-top: 15px;  
+}
+#adminTabsContent {
+    background-color:  rgb(216, 233, 238);
+}
+
+
 
 
 /*
@@ -243,8 +252,10 @@ h2 {
       "valores valores";
     grid-template-columns: 1fr 1fr;
   }
+  .container {
+    width: 100%;
 }
-
+}
   
 
 
@@ -271,7 +282,7 @@ h2 {
     }
     nav ul li {
 	       margin-top: 6px;
-}
+    }
     .grid-institucional {
     grid-template-areas:
       "carousel"
@@ -279,8 +290,14 @@ h2 {
       "vision"
       "valores";
     grid-template-columns: 1fr;
-  }
+    }
+    .container {
+    width: 100%;
+    }
 }
+
+
+
 
 /* estilos de institucional */
 .mision {
@@ -289,20 +306,18 @@ h2 {
     padding: 12px;
     border-radius: 15px;
     
-    text-align: justify;
-        
+    text-align: justify;      
 }
 .mision h2 {
     font-weight: bold;
 }
-
-
 /* estilos de contacto */
 .contacto .card {
   background-color: #a2dfb8; 
   color: #ffffff;            
   border-radius: 8px;
 }
+
 
 
 
