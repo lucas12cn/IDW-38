@@ -308,6 +308,13 @@ h2 {
         border-radius: 0.375rem;
         margin-bottom: 0.5rem;
     }
+    .nav-tabs .nav-link:not(.active) {
+    border-color: #d0d2d4; 
+    }
+    .nav-tabs .nav-link.active {      
+    border-color: #d0d2d4; 
+}
+
 
 }
 
