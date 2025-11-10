@@ -173,7 +173,11 @@ h2 {
 #tablaUsuarios thead tr th{
     background-color:  #baf7bc;
 }
-
+.boton-solicitar{
+    background-color:  #baf7bc;
+    border-color: #baf7bc;
+    color: #6c757d;
+}
 
 
 /*

@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const isUsuarios = await login(user, pass);
 
       if (isUsuarios) {                                               
-        // Guarda el token y usuario (NOTA: la API devuelve 'accessToken' con T mayúscula)
+        // Guarda el token y usuario 
         sessionStorage.setItem('token', isUsuarios.accessToken);
         sessionStorage.setItem('usuarioLogueado', isUsuarios.username);
         
@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const modal = bootstrap.Modal.getInstance(modalElement);
         if (modal) { modal.hide(); }
         
-      } else {                                                      
-        mostrarMensaje('Error en credenciales', 'danger');
+      } else {                                                   
+        alert('Error en las credenciales. Usuario o contraseña incorrectos.');
       }                                                             
     });                                                             
   }                                                                 
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   verificarAccesoAdmin();
 
-  // al cargar la página, actualizar la UI según el estado
+  // al cargar la página, actualiza la UI según el estado
   const estaLogueado = sessionStorage.getItem('token') !== null;
   updateUIForAdmin(estaLogueado);
 });
