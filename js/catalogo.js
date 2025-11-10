@@ -121,13 +121,16 @@ document.addEventListener('DOMContentLoaded', function() {
             card.innerHTML = `
                 <div class="card shadow-sm">
                     <img src="${medico.imagen}" class="card-img-top object-fit-scale" alt="${nombreCompleto}" style="max-height: 410px;">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">${nombreCompleto}</h5>
-                        <p class="card-text card-text lh-lg mt-3">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">${nombreCompleto}</h5>
+                            <p class="card-text card-text lh-lg mt-3">
                             <strong>Especialidad:</strong> ${especialidadNombre}<br>
-                            <strong>Obra social:</strong> ${obrasSocialesNombres}<br>
-                        </p>
-                    </div>
+                            <strong>Obra social:</strong> ${obrasSocialesNombres}<br>                            
+                            </p>                        
+                        </div>
+                    <div class="card-footer bg-transparent border-0 p-2">
+                    <a href="reservas.html" class="btn btn-success btn-sm w-100 boton-solicitar">Solicitar turno</a>
+                    </div>                    
                 </div>
             `;
             
