@@ -65,14 +65,109 @@
         </nav>          
     </header>
     
-    <main class="container">
-        <section >
-            
-        
-        
-        </section>
-    
-      </main>
+    <main class="container my-5" style="min-height: 70vh;">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-8">
+                <h2 class="text-center mb-4">Consultar mis Turnos</h2>
+                <form id="formBuscarTurno" class="border rounded p-4 bg-light shadow-sm">
+                    <div class="mb-3">
+                        <label for="inputBusqueda" class="form-label">Ingrese su Documento o ID de Reserva</label>
+                        <input type="text" class="form-control" id="inputBusqueda" placeholder="Ej: 30123456 o 1">
+                    </div>
+                    <button type="submit" class="btn btn-info">Buscar</button>
+                </form>
+                
+                <div id="resultadosBusqueda" class="mt-4">
+                    </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                
+                <h2 class="text-center mb-4">Reserva de Turno</h2>
+                
+                <form id="formReserva" class="border rounded p-4 p-md-5 bg-light shadow-sm">
+                    
+                    <div class="step" id="step1">
+                        <h3 class="mb-3">Paso 1: Seleccione la Especialidad</h3>
+                        <div class="mb-3">
+                            <label for="reservaEspecialidad" class="form-label">Especialidad</label>
+                            <select class="form-select" id="reservaEspecialidad" required>
+                                <option value="" selected disabled>-- Cargando especialidades... --</option>
+                            </select>
+                        </div>
+                        <button type="button" id="btnNextStep1" class="btn btn-primary" disabled>Siguiente</button>
+                    </div>
+
+                    <div class="step d-none" id="step2">
+                        <h3 class="mb-3">Paso 2: Seleccione el Médico</h3>
+                        <div class="mb-3">
+                            <label for="reservaMedico" class="form-label">Médicos disponibles</label>
+                            <select class="form-select" id="reservaMedico" required>
+                                <option value="" selected disabled>-- Seleccione un médico --</option>
+                            </select>
+                        </div>
+                        <button type="button" id="btnPrevStep2" class="btn btn-secondary me-2">Anterior</button>
+                        <button type="button" id="btnNextStep2" class="btn btn-primary" disabled>Siguiente</button>
+                    </div>
+
+                    <div class="step d-none" id="step3">
+                        <h3 class="mb-3">Paso 3: Seleccione Obra Social y Turno</h3>
+                        <div class="mb-3">
+                            <label for="reservaObraSocial" class="form-label">Obra Social</label>
+                            <select class="form-select" id="reservaObraSocial" required>
+                                <option value="" selected disabled>-- Seleccione una obra social --</option>
+                                <option value="0">Privado (Sin Obra Social)</option>
+                                </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reservaTurno" class="form-label">Turnos Disponibles</label>
+                            <select class="form-select" id="reservaTurno" required>
+                                <option value="" selected disabled>-- Seleccione un turno --</option>
+                            </select>
+                        </div>
+                        <button type="button" id="btnPrevStep3" class="btn btn-secondary me-2">Anterior</button>
+                        <button type="button" id="btnNextStep3" class="btn btn-primary" disabled>Siguiente</button>
+                    </div>
+
+                    <div class="step d-none" id="step4">
+                        <h3 class="mb-3">Paso 4: Datos del Paciente</h3>
+                        <div class="mb-3">
+                            <label for="reservaDNI" class="form-label">Documento</label>
+                            <input type="text" class="form-control" id="reservaDNI" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reservaNombrePaciente" class="form-label">Apellido y Nombre</label>
+                            <input type="text" class="form-control" id="reservaNombrePaciente" required>
+                        </div>
+                        <button type="button" id="btnPrevStep4" class="btn btn-secondary me-2">Anterior</button>
+                        <button type="button" id="btnNextStep4" class="btn btn-primary">Ver Resumen</button>
+                    </div>
+
+                    <div class="step d-none" id="step5">
+                        <h3 class="mb-3">Paso 5: Resumen de la Reserva</h3>
+                        <div id="resumenReserva" class="alert alert-info">
+                            </div>
+                        <p class="fs-4 fw-bold">Valor Total: <span id="valorTotalReserva" class="text-success">$0.00</span></p>
+                        <button type="button" id="btnPrevStep5" class="btn btn-secondary me-2">Modificar</button>
+                        <button type="submit" id="btnConfirmarReserva" class="btn btn-success">Confirmar Reserva</button>
+                    </div>
+
+                    <div class="step d-none" id="step6">
+                        <div class="alert alert-success text-center">
+                            <h4 class="alert-heading">¡Reserva Exitosa!</h4>
+                            <p>Su turno ha sido registrado correctamente.</p>
+                            <p id="datosReservaExitosa" class="mb-0"></p>
+                            <hr>
+                            <a href="index.html" class="btn btn-success">Volver al Inicio</a>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </main>
 
    <footer class="footer">
         <div id="redes_sociales">
@@ -91,6 +186,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="config/usuarios.js"></script>
     <script type="module" src="js/login.js"></script>
-
-    </body>
+    <script src="js/reservas.js"></script> 
+</body>
 </html>

@@ -104,81 +104,230 @@
         <div class="tab-content" id="adminTabsContent">
             
             <!--Alta de Médicos-->
-            <div class="tab-pane fade show active caja_administrar" id="medicos" role="tabpanel" aria-labelledby="medicos-tab">
+            <div class="tab-pane fade show active p-3" id="medicos" role="tabpanel" aria-labelledby="medicos-tab">
                 <section class="mb-5">
-                    <section class="mb-5">
-                    <h2 class="mb-3">Alta de Médicos</h2>
-                    <form id="altaMedicoForm" class="border rounded p-4 bg-light shadow-sm">
-                    <div class="mb-3">
-                        <label for="Nombre" class="form-label">Nombre y Apellido</label>
-                        <input name="Nombre" type="text" class="form-control" id="Nombre" required>
-                    <div class="mb-3">
-                        <label for="Especialidad" class="form-label">Especialidad</label>
-                        <input name="Especialidad" type="text" class="form-control" id="Especialidad" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="Telefono" class="form-label">Teléfono</label>
-                        <input name="Telefono" type="tel" class="form-control" id="Telefono" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="obraSocial" class="form-label">Obras Sociales (separadas por coma)</label>
-                        <input name="obraSocial" type="text" class="form-control" id="obraSocial" placeholder="OSDE, IOMA, Swiss Medical" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="Email" class="form-label">Email</label>
-                        <input name="Email"  type="email" class="form-control" id="Email" required>
-                        <div class="mb-3">
-                        <label for="imagen" class="form-label">Foto del médico:</label>
-                        <input type="file" class="form-control" id="imagen" accept="image/*">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Registrar Médico</button>
-                    </form>
-                    </section>
+                    <h2 class="mb-3">Gestionar Médicos</h2>
                     
-                    <section>
-                    <div class="container text-center">
-                        <div class="table-responsive">
-                            <table class="table" id="tablaMedicos">
-                                <thead class="table">
-                                    <tr>
-                                    <th scope="col">Nombre y Apellido</th>
-                                    <th scope="col">Especialidad</th>
-                                    <th scope="col">Telefono</th>
-                                    <th scope="col">Obra Social</th>
-                                    <th scope="col">Correo electronico</th>
-                                    <th scope="col"></th>
-                                    <th scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!--medigos-->
-                                </tbody>
-                                </table>
-
+                    <form id="altaMedicoForm" class="border rounded p-4 bg-light shadow-sm mb-4">
+                        <input type="hidden" id="medicoId" value="">
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="medicoNombre" class="form-label">Nombre</label>
+                                <input name="Nombre" type="text" class="form-control" id="medicoNombre" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="medicoApellido" class="form-label">Apellido</label>
+                                <input name="Apellido" type="text" class="form-control" id="medicoApellido" required>
+                            </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="medicoMatricula" class="form-label">Matrícula Profesional</label>
+                                <input name="Matricula" type="number" class="form-control" id="medicoMatricula" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="medicoEspecialidad" class="form-label">Especialidad</label>
+                                <select class="form-select" id="medicoEspecialidad" required>
+                                    <option value="" selected disabled>-- Seleccione una especialidad --</option>
+                                    </select>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="medicoDescripcion" class="form-label">Descripción / Presentación</label>
+                            <textarea class="form-control" id="medicoDescripcion" rows="3"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Obras Sociales que acepta</label>
+                            <div id="medicoObrasSocialesCheckboxes" class="border rounded p-2" style="max-height: 150px; overflow-y: auto; background-color: white;">
+                                <p class="text-muted small m-0">No hay obras sociales cargadas. Agregue obras sociales en su pestaña correspondiente.</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="medicoValorConsulta" class="form-label">Valor de Consulta ($)</label>
+                                <input name="ValorConsulta" type="number" step="0.01" class="form-control" id="medicoValorConsulta" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="medicoImagen" class="form-label">Foto del médico</label>
+                                <input type="file" class="form-control" id="medicoImagen" accept="image/*">
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Registrar Médico</button>
+                        <button type="button" id="btnCancelarEdicionMedico" class="btn btn-secondary d-none">Cancelar Edición</button>
+                    </form>
+                </section>
+                
+                <section>
+                    <h3 class="mb-3">Médicos Registrados</h3>
+                    <div class="table-responsive">
+                        <table class="table" id="tablaMedicos">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nombre Completo</th>
+                                    <th scope="col">Matrícula</th>
+                                    <th scope="col">Especialidad</th>
+                                    <th scope="col">Valor Consulta</th>
+                                    <th scope="col">Foto</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaMedicosBody">
+                                </tbody>
+                        </table>
                     </div>
-                    </section>
                 </section>
             </div>
 
             <!--Especialidades-->
-            <div class="tab-pane fade" id="especialidades" role="tabpanel" aria-labelledby="especialidades-tab">
+            <div class="tab-pane fade p-3" id="especialidades" role="tabpanel" aria-labelledby="especialidades-tab">
                 <section class="mb-5">
+                    <h2 class="mb-3">Gestionar Especialidades</h2>
                     
+                    <form id="formEspecialidad" class="border rounded p-4 bg-light shadow-sm mb-4">
+                        <input type="hidden" id="especialidadId" value="">
+                        
+                        <div class="mb-3">
+                            <label for="especialidadNombre" class="form-label">Nombre de la Especialidad</label>
+                            <input type="text" class="form-control" id="especialidadNombre" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar Especialidad</button>
+                        <button type="button" id="btnCancelarEdicionEsp" class="btn btn-secondary d-none">Cancelar Edición</button>
+                    </form>
+
+                    <section>
+                        <h3 class="mb-3">Especialidades Registradas</h3>
+                        <div class="table-responsive">
+                            <table class="table" id="tablaEspecialidades">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tablaEspecialidadesBody">
+                                    </tbody>
+                            </table>
+                        </div>
+                    </section>
                 </section>
             </div>
 
             <!--Obras Sociales-->
-            <div class="tab-pane fade" id="obras" role="tabpanel" aria-labelledby="obras-tab">
-                <section class="mb-5">
-                    
-                </section>
-            </div>
+                <div class="tab-pane fade p-3" id="obras" role="tabpanel" aria-labelledby="obras-tab">
+                    <section class="mb-5">
+                        <h2 class="mb-3">Gestionar Obras Sociales</h2>
+                        
+                        <form id="formObraSocial" class="border rounded p-4 bg-light shadow-sm mb-4">
+                            <input type="hidden" id="obraSocialId" value="">
+                            
+                            <div class="mb-3">
+                                <label for="obraSocialNombre" class="form-label">Nombre de la Obra Social</label>
+                                <input type="text" class="form-control" id="obraSocialNombre" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="obraSocialDescripcion" class="form-label">Descripción (Opcional)</label>
+                                <textarea class="form-control" id="obraSocialDescripcion" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Guardar Obra Social</button>
+                            <button type="button" id="btnCancelarEdicionOS" class="btn btn-secondary d-none">Cancelar Edición</button>
+                        </form>
+
+                        <section>
+                            <h3 class="mb-3">Obras Sociales Registradas</h3>
+                            <div class="table-responsive">
+                                <table class="table" id="tablaObrasSociales">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Descripción</th>
+                                            <th scope="col">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tablaObrasSocialesBody">
+                                        </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </section>
+                </div>
 
             <!--Gestionar Turnos-->
-            <div class="tab-pane fade" id="turnos" role="tabpanel" aria-labelledby="turnos-tab">
+            <div class="tab-pane fade p-3" id="turnos" role="tabpanel" aria-labelledby="turnos-tab">
+    
                 <section class="mb-5">
+                    <h2 class="mb-3">Gestionar Turnos Disponibles</h2>
                     
+                    <form id="formTurno" class="border rounded p-4 bg-light shadow-sm mb-4">
+                        <input type="hidden" id="turnoId" value="">
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="turnoMedico" class="form-label">Médico</label>
+                                <select class="form-select" id="turnoMedico" required>
+                                    <option value="" selected disabled>-- Seleccione un médico --</option>
+                                    </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="turnoFechaHora" class="form-label">Fecha y Hora</label>
+                                <input type="datetime-local" class="form-control" id="turnoFechaHora" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar Turno</button>
+                        <button type="button" id="btnCancelarEdicionTurno" class="btn btn-secondary d-none">Cancelar Edición</button>
+                    </form>
+
+                    <section>
+                        <h3 class="mb-3">Listado de Turnos</h3>
+                        <div class="table-responsive">
+                            <table class="table" id="tablaTurnos">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Médico</th>
+                                        <th scope="col">Fecha y Hora</th>
+                                        <th scope="col">Disponible</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tablaTurnosBody">
+                                    </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </section>
+
+                <hr class="my-5">
+
+                <section class="mb-5">
+                    <h2 class="mb-3">Reservas de Pacientes</h2>
+                    <div class="table-responsive">
+                        <table class="table" id="tablaReservas">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th scope="col">ID Reserva</th>
+                                    <th scope="col">Paciente (DNI)</th>
+                                    <th scope="col">Apellido y Nombre</th>
+                                    <th scope="col">Turno (Médico y Hora)</th>
+                                    <th scope="col">Especialidad</th>
+                                    <th scope="col">Obra Social</th>
+                                    <th scope="col">Valor Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaReservasBody">
+                                <tr>
+                                    <td colspan="7" class="text-center">Aún no hay reservas registradas.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </section>
             </div>
 
@@ -228,7 +377,12 @@
     <script src="config/usuarios.js"></script>
     <script type="module" src="js/login.js"></script>
     <script src="js/altaMedicos.js"></script>
+    <script src="js/especialidades.js"></script> 
+    <script src="js/obrasSociales.js"></script>
+    <script src="js/turnos.js"></script>
+    <script src="js/adminReservas.js"></script> 
     <script src="js/usuarios.js"></script>
+    
     
 </body>
 </html>
