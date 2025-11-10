@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
-    
     const formObraSocial = document.getElementById('formObraSocial');
     const inputId = document.getElementById('obraSocialId');
     const inputNombre = document.getElementById('obraSocialNombre');
+    const inputDescuento = document.getElementById('obraSocialDescuento');
     const inputDescripcion = document.getElementById('obraSocialDescripcion');
     const tablaBody = document.getElementById('tablaObrasSocialesBody');
     const btnCancelarEdicion = document.getElementById('btnCancelarEdicionOS');
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         tablaBody.innerHTML = '';
 
         if (obrasSociales.length === 0) {
-            tablaBody.innerHTML = '<tr><td colspan="4" class="text-center">No hay obras sociales registradas.</td></tr>';
+            tablaBody.innerHTML = '<tr><td colspan="5" class="text-center">No hay obras sociales registradas.</td></tr>';
             return;
         }
 
@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
             fila.innerHTML = `
                 <td style="vertical-align: middle;">${os.id}</td>
                 <td style="vertical-align: middle;">${os.nombre}</td>
+                <td style="vertical-align: middle;"><strong>${os.descuento || 0}%</strong></td>
                 <td style="vertical-align: middle;">${os.descripcion || 'N/A'}</td>
                 <td style="vertical-align: middle;">
                     <button class="btn btn-sm btn-warning me-2 btn-editar-os" data-id="${os.id}">Editar</button>
@@ -59,10 +60,16 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const nombre = inputNombre.value.trim();
         const descripcion = inputDescripcion.value.trim();
+        const descuento = parseFloat(inputDescuento.value) || 0;
         const id = inputId.value;
         
         if (!nombre) {
             alert('Por favor, ingrese un nombre para la obra social.');
+            return;
+        }
+        
+        if (descuento < 0 || descuento > 100) {
+            alert('El porcentaje de descuento debe estar entre 0 y 100.');
             return;
         }
 
@@ -73,13 +80,15 @@ document.addEventListener('DOMContentLoaded', function() {
             if (index !== -1) {
                 obrasSociales[index].nombre = nombre;
                 obrasSociales[index].descripcion = descripcion;
+                obrasSociales[index].descuento = descuento;
                 alert('Obra Social actualizada con éxito.');
             }
         } else {
             const nuevaObraSocial = {
                 id: generarNuevoId(),
                 nombre: nombre,
-                descripcion: descripcion
+                descripcion: descripcion,
+                descuento: descuento
             };
             obrasSociales.push(nuevaObraSocial);
             alert('Obra Social registrada con éxito.');
@@ -98,9 +107,9 @@ document.addEventListener('DOMContentLoaded', function() {
             inputId.value = obraSocial.id;
             inputNombre.value = obraSocial.nombre;
             inputDescripcion.value = obraSocial.descripcion;
+            inputDescuento.value = obraSocial.descuento || 0;
             btnCancelarEdicion.classList.remove('d-none');
-Example
-            window.scrollTo(0, 0);
+            window.scrollTo(0, 0); 
         }
     }
 
@@ -109,7 +118,6 @@ Example
         const obraSocial = obrasSociales.find(os => os.id == id);
 
         if (confirm(`¿Estás seguro que deseas eliminar la obra social "${obraSocial.nombre}"?`)) {
-            
             const nuevasObrasSociales = obrasSociales.filter(os => os.id != id);
             guardarObrasSociales(nuevasObrasSociales);
             renderTablaObrasSociales();
@@ -131,8 +139,8 @@ Example
             eliminarObraSocial(id);
         }
     }
-    renderTablaObrasSociales();
 
+    renderTablaObrasSociales();
     formObraSocial.addEventListener('submit', manejarSubmit);
     tablaBody.addEventListener('click', manejarClicsTabla);
     btnCancelarEdicion.addEventListener('click', resetFormulario);
