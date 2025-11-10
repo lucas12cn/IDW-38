@@ -26,17 +26,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const valorTotalSpan = document.getElementById('valorTotalReserva');
     const exitoDiv = document.getElementById('datosReservaExitosa');
     
-    // --- Selectores del DOM (Formulario de BÚSQUEDA) ---
     const formBuscar = document.getElementById('formBuscarTurno');
     const inputBusqueda = document.getElementById('inputBusqueda');
     const divResultados = document.getElementById('resultadosBusqueda');
 
-    // --- Estado del Formulario ---
     let currentStep = 1;
     let reservaActual = {};
 
-    
-    // logica para buscar turno
     async function buscarMisTurnos(event) {
         event.preventDefault();
         const query = inputBusqueda.value.trim();
@@ -99,8 +95,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    
-    // logica para crear reserva
     function showStep(stepNumber) {
         steps.forEach((step, index) => {
             if (index + 1 === stepNumber) {
@@ -171,8 +165,25 @@ document.addEventListener('DOMContentLoaded', function() {
         const medico = medicos.find(m => m.id == selMedico.value);
         const obraSocial = obrasSociales.find(o => o.id == selObraSocial.value);
         const turno = turnos.find(t => t.id == selTurno.value);
-        const nombreOS = selObraSocial.value == "0" ? "Privado" : (obraSocial ? obraSocial.nombre : 'N/A');
         
+        const valorBase = medico.valorConsulta;
+        let valorFinal = valorBase;
+        let nombreOS = "Privado";
+        
+        if (selObraSocial.value != "0" && obraSocial) {
+            nombreOS = obraSocial.nombre;
+            const descuentoPorcentaje = obraSocial.descuento || 0;
+            
+            if (descuentoPorcentaje > 0) {
+                const descuento = valorBase * (descuentoPorcentaje / 100);
+                valorFinal = valorBase - descuento;
+            }
+            
+        } else if (selObraSocial.value != "0" && !obraSocial) {
+            console.warn("Obra social no encontrada, se cobra como privado.");
+            nombreOS = "Error OS - Se cobra Privado";
+        }
+
         reservaActual = {
             id: generarNuevoIdReserva(),
             documento: inputDNI.value.trim(),
@@ -180,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
             turnoId: parseInt(turno.id),
             especialidadId: parseInt(especialidad.id),
             obraSocialId: parseInt(selObraSocial.value),
-            valorTotal: medico.valorConsulta
+            valorTotal: valorFinal
         };
 
         resumenDiv.innerHTML = `
@@ -190,6 +201,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <strong>Obra Social:</strong> ${nombreOS}<br>
             <strong>Fecha y Hora:</strong> ${formatearFecha(turno.fechaHora)}
         `;
+        
         valorTotalSpan.textContent = `$${reservaActual.valorTotal.toFixed(2)}`;
     }
 
@@ -219,16 +231,19 @@ document.addEventListener('DOMContentLoaded', function() {
             reservas.push(reservaActual);
             localStorage.setItem('reservas', JSON.stringify(reservas));
 
-            const turnosActualizados = turnos.map(turno => {
+            const turnosActuales = JSON.parse(localStorage.getItem('turnos')) || [];
+            
+            const turnosActualizados = turnosActuales.map(turno => {
                 if (turno.id === reservaActual.turnoId) {
                     return { ...turno, disponible: false };
                 }
                 return turno;
             });
+
             localStorage.setItem('turnos', JSON.stringify(turnosActualizados));
 
             exitoDiv.innerHTML = `ID de Reserva: <strong>${reservaActual.id}</strong><br>
-                                  ${resumenDiv.innerHTML}`;
+                                 ${resumenDiv.innerHTML}`;
             showStep(6);
 
         } catch (error) {
@@ -237,13 +252,11 @@ document.addEventListener('DOMContentLoaded', function() {
             showStep(5);
         }
     }
-    
-    // Búsqueda
+
     if (formBuscar) {
         formBuscar.addEventListener('submit', buscarMisTurnos);
     }
 
-    // Creación de Reserva (Navegación)
     if (formReserva) {
         btnNext1.addEventListener('click', () => showStep(2));
         btnPrev2.addEventListener('click', () => showStep(1));
@@ -261,7 +274,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         btnPrev5.addEventListener('click', () => showStep(4));
         
-        // Creación de Reserva
         selEspecialidad.addEventListener('change', () => {
             cargarMedicos(selEspecialidad.value);
             selMedico.value = "";
@@ -290,6 +302,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         formReserva.addEventListener('submit', confirmarReserva);
+
         cargarEspecialidades();
         showStep(1);
     }

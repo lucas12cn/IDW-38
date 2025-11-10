@@ -91,8 +91,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 <td style="vertical-align: middle;">${formatearFecha(turno.fechaHora)}</td>
                 <td style="vertical-align: middle;">${disponibleTexto}</td>
                 <td style="vertical-align: middle;">
-                    <button class="btn btn-sm btn-warning me-2 btn-editar-turno" data-id="${turno.id}" ${!turno.disponible ? 'disabled' : ''}>Editar</button>
-                    <button class="btn btn-sm btn-danger btn-eliminar-turno" data-id="${turno.id}" ${!turno.disponible ? 'disabled' : ''}>Eliminar</button>
+                    <button class="btn btn-sm btn-warning me-2 btn-editar-turno" data-id="${turno.id}">Editar</button>
+                    <button class="btn btn-sm btn-danger btn-eliminar-turno" data-id="${turno.id}">Eliminar</button>
                 </td>
             `;
             tablaBody.appendChild(fila);
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        if (fechaSeleccionada <= fechaActual) {
+        if (fechaSeleccionada <= fechaActual && !id) {
             alert('La fecha y hora del turno deben ser futuras.');
             return;
         }
@@ -123,12 +123,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (id) {
             const index = turnos.findIndex(t => t.id == id);
             if (index !== -1) {
-                if (!turnos[index].disponible) {
-                    alert('No se puede editar un turno que ya ha sido reservado.');
-                    return;
-                }
+                
                 turnos[index].medicoId = parseInt(medicoId);
                 turnos[index].fechaHora = fechaHora;
+                
                 alert('Turno actualizado con éxito.');
             }
         } else {
@@ -152,10 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const turno = turnos.find(t => t.id == id);
 
         if (turno) {
-            if (!turno.disponible) {
-                alert('Este turno ya fue reservado y no se puede editar.');
-                return;
-            }
+            
             inputId.value = turno.id;
             selectMedico.value = turno.medicoId;
             inputFechaHora.value = turno.fechaHora;
@@ -169,12 +164,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const turnos = obtenerTurnos();
         const turno = turnos.find(t => t.id == id);
 
+        
+        let advertencia = "";
         if (turno && !turno.disponible) {
-            alert('No se puede eliminar un turno que ya ha sido reservado.');
-            return;
+            advertencia = "\n\nADVERTENCIA: Este turno ya tiene una reserva asociada. Borrarlo causará errores al paciente.";
         }
 
-        if (confirm(`¿Estás seguro que deseas eliminar este turno?`)) {
+        if (confirm(`¿Estás seguro que deseas eliminar este turno?${advertencia}`)) {
             const nuevosTurnos = turnos.filter(t => t.id != id);
             guardarTurnos(nuevosTurnos);
             renderTablaTurnos();
@@ -206,5 +202,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('turnos-tab').addEventListener('click', () => {
         cargarMedicosSelect();
+        renderTablaTurnos();
     });
+
+    document.addEventListener('reservasActualizadas', renderTablaTurnos);
 });
