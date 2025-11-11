@@ -326,24 +326,98 @@ h2 {
 
 
 /* estilos de institucional */
-.mision {
-    background-color: rgb(216, 233, 238);
-    justify-self: center;
-    padding: 12px;
-    border-radius: 15px;
-    
-    text-align: justify;      
+
+.mision, .vision, #valores {
+  background: linear-gradient(180deg, rgb(216, 233, 238) 0%, #ffffff 100%);
+  border: 1px solid #cfe7eb;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
-.mision h2 {
-    font-weight: bold;
+
+
+
+.mision:hover, .vision:hover, #valores:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  background-color: #e3f2f4;
 }
+
+.grid-institucional h2 {
+  text-align: center;
+  font-family: "Georgia", "Times New Roman", serif;
+  font-weight: bold;
+  font-size: 2rem;
+  color: #174d3c;
+  text-transform: capitalize;
+  margin-bottom: 0.8rem;
+  border-bottom: 2px solid #98c7b0;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+
+.mision p, .vision p, #valores p {
+  color: #233c3b;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+#valores h3 {
+  color: #1e5b4c;
+  margin-top: 1rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+
+.vision {
+  background: linear-gradient(135deg, #e7f6f9 0%, #d8edf2 100%);
+  border-left: 6px solid #6bb5b2;
+}
+
+.vision h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: #6bb5b2;
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+
+
 /* estilos de contacto */
-.contacto .card {
-  background-color: #a2dfb8; 
-  color: #ffffff;            
-  border-radius: 8px;
+
+.contacto h2 {
+  text-align: center;
+  color: #1e5b4c;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
 }
 
+.contacto .card {
+  background-color: rgb(216, 233, 238); 
+  color: #11423a; 
+  border: 1px solid #c2dfe2; 
+  border-radius: 15px;
+  padding: 18px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.contacto .card:hover {
+  background-color: #b9e2e8; 
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.contacto .card h5 {
+  font-weight: 600;
+  color: #0d4e4a;
 
 
-
+}
